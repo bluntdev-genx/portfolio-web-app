@@ -12,8 +12,8 @@ npm run verify
 
 ## Deployment
 
-GitHub Pages is configured in workflow mode. Pushes to `main` run `.github/workflows/deploy.yml`, build the app with `base: "/portfolio-web-app/"`, generate the resume PDFs, and publish `dist/` to:
+GitHub Pages is configured in workflow mode. Pushes to `main` run `.github/workflows/deploy.yml`, generate the resume PDFs, build the app for the custom-domain root, and publish `dist/` to:
 
 ```text
-https://bluntdev-genx.github.io/portfolio-web-app/
+https://hey-raymond.genxlabs.tech/
 ```

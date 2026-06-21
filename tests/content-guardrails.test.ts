@@ -6,6 +6,7 @@ import {
   resumeVariants,
   technologyGroups
 } from "../src/content/profile";
+import { readFileSync } from "node:fs";
 
 const forbiddenResumeTerms = [
   "CAREER CONTINUITY",
@@ -14,6 +15,8 @@ const forbiddenResumeTerms = [
   "Career break",
   "UPSC",
   "AFCAT",
+  "Data Analytics / Data Engineering",
+  "Data Analytics + Data Engineering",
   "MongoDB Aggregations",
   "MongoDB aggregation pipelines",
   "MongoDB (Aggregation Pipelines)",
@@ -35,11 +38,11 @@ function flatten(value: unknown): string {
 describe("profile content guardrails", () => {
   it("keeps the public positioning focused on data full-stack product impact", () => {
     expect(profile.name).toBe("Ashutosh Patel");
-    expect(profile.title).toContain("Data Analytics");
-    expect(profile.title).toContain("Data Engineering");
+    expect(profile.title).toContain("Data Full Stack Ownership");
     expect(profile.location).toContain("Gurugram");
     expect(profile.summary).toContain("credit risk");
-    expect(profile.summary).toContain("data product");
+    expect(profile.summary).toContain("schema design");
+    expect(profile.summary).toContain("AI/ML/DS");
   });
 
   it("exposes the required quantified impact metrics", () => {
@@ -69,7 +72,7 @@ describe("profile content guardrails", () => {
     expect(urls).toContain("1,329 IndiaMART products");
     expect(urls).toContain("821 suppliers");
     expect(urls).toContain("120 cities");
-    expect(urls).toContain("/portfolio-web-app/case-studies/b2b-marketplace-crawler-evidence.json");
+    expect(urls).toContain("/case-studies/b2b-marketplace-crawler-evidence.json");
     expect(urls).toContain("https://static-base-27037824.figma.site");
     expect(urls).toContain("https://drag-bats-99244166.figma.site");
   });
@@ -85,13 +88,13 @@ describe("profile content guardrails", () => {
     }
   });
 
-  it("provides exactly the two requested resume variants", () => {
+  it("keeps catered resume downloads under one unified data full-stack frame", () => {
     expect(resumeVariants.map((variant) => variant.id)).toEqual([
-      "data-analytics",
-      "data-engineering"
+      "data-full-stack",
+      "product-data-systems"
     ]);
-    expect(resumeVariants[0].headline).toContain("Data Analytics");
-    expect(resumeVariants[1].headline).toContain("Data Engineering");
+    expect(resumeVariants[0].headline).toContain("Data Full Stack Ownership");
+    expect(resumeVariants[1].headline).toContain("Product Data Systems");
   });
 
   it("keeps contact and stack content ready for the portfolio UI", () => {
@@ -102,5 +105,9 @@ describe("profile content guardrails", () => {
     ]);
     expect(technologyGroups.some((group) => group.items.includes("FastAPI"))).toBe(true);
     expect(technologyGroups.some((group) => group.items.includes("MongoDB interactions"))).toBe(true);
+  });
+
+  it("publishes with the configured custom domain", () => {
+    expect(readFileSync("public/CNAME", "utf8").trim()).toBe("hey-raymond.genxlabs.tech");
   });
 });

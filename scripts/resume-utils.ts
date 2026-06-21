@@ -20,6 +20,8 @@ export const forbiddenResumeTerms = [
   "defence-examination",
   "UPSC",
   "AFCAT",
+  "Data Analytics / Data Engineering",
+  "Data Analytics + Data Engineering",
   "MongoDB Aggregations",
   "MongoDB aggregation pipelines",
   "MongoDB (Aggregation Pipelines)",

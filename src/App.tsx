@@ -2,11 +2,15 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   ChartColumnIncreasing,
+  ChevronDown,
   DatabaseZap,
+  Download,
   Github,
+  Layers3,
   Linkedin,
   Mail,
   MoveRight,
+  Network,
   ShieldCheck
 } from "lucide-react";
 import "./App.css";
@@ -17,8 +21,7 @@ import {
   experience,
   impactMetrics,
   profile,
-  resumeVariants,
-  technologyGroups
+  resumeVariants
 } from "./content/profile";
 
 const actionIconMap = {
@@ -27,36 +30,57 @@ const actionIconMap = {
   GitHub: Github
 } as const;
 
-const resumeHrefById = {
-  "data-analytics": "/portfolio-web-app/resumes/ashutosh-patel-data-analytics.pdf",
-  "data-engineering": "/portfolio-web-app/resumes/ashutosh-patel-data-engineering.pdf"
+const baseUrl = import.meta.env.BASE_URL;
+
+function assetHref(path: string) {
+  return `${baseUrl}${path.replace(/^\//, "")}`;
+}
+
+function linkHref(href?: string) {
+  if (!href) {
+    return "#";
+  }
+
+  return href.startsWith("/") ? assetHref(href) : href;
+}
+
+function isExternalHref(href?: string) {
+  return Boolean(href && /^https?:\/\//.test(href));
+}
+
+const resumeLabels = {
+  "data-full-stack": "Full-stack resume PDF",
+  "product-data-systems": "Systems depth PDF"
 } as const;
 
-const capabilityIconMap = [ChartColumnIncreasing, ShieldCheck, DatabaseZap];
+const capabilityIconMap = [Layers3, ShieldCheck, DatabaseZap, ChartColumnIncreasing];
 
 const workflowStages = [
   {
-    step: "Capture",
-    detail: "Scrapy collection across category-specific sources with controlled concurrency, retry logic, and throttled request handling."
+    step: "Schema Design",
+    detail:
+      "Source structures, product entities, and validation rules shaped before downstream metrics or model features are trusted."
   },
   {
-    step: "Normalize",
-    detail: "Structured item schemas, whitespace cleanup, price normalization, absolute URL handling, and missing-value defaults."
+    step: "Service Design",
+    detail:
+      "APIs, crawlers, scoring paths, retries, and monitoring keep data movement reliable for product and analytics consumers."
   },
   {
-    step: "Partition",
-    detail: "Category-scoped outputs for Industrial Machinery, Electrical Components, Raw Materials, and Packaging."
+    step: "Feature Systems",
+    detail:
+      "Signals are normalized, evaluated, selected, documented, and mapped to deterministic AI/ML/DS decision workflows."
   },
   {
-    step: "Analyze",
-    detail: "Combined datasets ready for EDA, pricing analysis, supplier geography, and data quality review."
+    step: "Analytics Layer",
+    detail:
+      "Dashboards, portfolio reviews, EDA packs, and client-ready narratives close the loop from raw data to decisions."
   }
 ] as const;
 
 function App() {
   const primaryCaseStudy = caseStudies[0];
   const referenceCaseStudies = caseStudies.slice(1);
-  const showWorkflowSlot = caseStudies.length < 4;
 
   return (
     <div className="page-shell">
@@ -89,90 +113,86 @@ function App() {
           <section className="hero reveal" aria-labelledby="hero-title">
             <div className="hero-grid">
               <div className="hero-copy">
-                <div className="hero-rule" aria-hidden="true" />
-                <p className="hero-kicker">Data Analytics / Data Engineering</p>
+                <p className="hero-kicker">{profile.title}</p>
                 <h1 id="hero-title">{profile.name}</h1>
-                <p className="hero-subtitle">Analytics Engineering, decision systems, and data product delivery.</p>
-                <p className="hero-summary">{profile.summary}</p>
+                <p className="hero-subtitle">
+                  Data product ownership from schema and services to features, analytics, and
+                  model-ready decisions.
+                </p>
 
-                <div className="hero-actions" aria-label="Resume and portfolio actions">
-                  {resumeVariants.map((resume) => (
-                    <a
-                      key={resume.id}
-                      className="action-button action-button-primary"
-                      aria-label={
-                        resume.id === "data-analytics"
-                          ? "Data Analytics resume"
-                          : "Data Engineering resume"
-                      }
-                      href={resumeHrefById[resume.id]}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <span>
-                        {resume.id === "data-analytics" ? "Analytics resume PDF" : "Engineering resume PDF"}
-                      </span>
-                      <ArrowUpRight aria-hidden="true" size={16} />
-                    </a>
-                  ))}
+                <div className="hero-actions" aria-label="Resume and contact actions">
+                  <details className="download-menu">
+                    <summary className="action-button action-button-primary">
+                      <Download aria-hidden="true" size={17} />
+                      <span>Downloads</span>
+                      <ChevronDown aria-hidden="true" size={16} />
+                    </summary>
+                    <div className="download-panel" aria-label="Resume downloads">
+                      {resumeVariants.map((resume) => (
+                        <a
+                          key={resume.id}
+                          href={assetHref(`/resumes/${resume.fileName}`)}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={resumeLabels[resume.id]}
+                        >
+                          <span>{resumeLabels[resume.id]}</span>
+                          <ArrowUpRight aria-hidden="true" size={15} />
+                        </a>
+                      ))}
+                    </div>
+                  </details>
 
-                  {contactLinks.map((link) => {
-                    const Icon = actionIconMap[link.label];
+                  {contactLinks
+                    .filter((link) => link.label === "Email")
+                    .map((link) => {
+                      const Icon = actionIconMap[link.label];
 
-                    return (
-                      <a
-                        key={link.label}
-                        className="action-button"
-                        href={link.href}
-                        target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                        rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                      >
-                        <Icon aria-hidden="true" size={16} />
-                        <span>{link.label}</span>
-                      </a>
-                    );
-                  })}
+                      return (
+                        <a
+                          key={link.label}
+                          className="action-button"
+                          href={link.href}
+                          target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                          rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                        >
+                          <Icon aria-hidden="true" size={16} />
+                          <span>{link.label}</span>
+                        </a>
+                      );
+                    })}
                 </div>
               </div>
 
-              <aside className="hero-panel" aria-label="Impact highlights">
-                <div className="hero-panel-header">
-                  <span>Impact ledger</span>
-                  <span>{profile.location}</span>
-                </div>
-                <ul className="hero-metrics">
-                  {impactMetrics.map((metric) => (
-                    <li key={metric.label}>
-                      <p className="metric-value">{metric.value}</p>
-                      <p className="metric-label">{metric.label}</p>
-                      <p className="metric-context">{metric.context}</p>
-                    </li>
+              <aside className="hero-panel" aria-label="Lifecycle ownership overview">
+                <div className="hero-panel-header">Ownership map</div>
+                <div className="lifecycle-stack">
+                  {workflowStages.map((stage) => (
+                    <article key={stage.step}>
+                      <Network aria-hidden="true" size={17} />
+                      <div>
+                        <h2>{stage.step}</h2>
+                        <p>{stage.detail}</p>
+                      </div>
+                    </article>
                   ))}
-                </ul>
+                </div>
               </aside>
             </div>
           </section>
 
           <section className="signal-band reveal" aria-label="Operating system overview">
             <div className="signal-copy">
-              <p className="section-label">Operating perspective</p>
-              <h2>Analytics systems framed as decision products.</h2>
-              <p>
-                The portfolio centers on lender-facing analytics, feature governance, and
-                product-ready reporting that connects operational reliability to business
-                outcomes.
-              </p>
+              <h2>Data products, owned across the full lifecycle.</h2>
+              <p>{profile.summary}</p>
             </div>
-            <div className="signal-technologies">
-              {technologyGroups.map((group) => (
-                <div key={group.label} className="technology-row">
-                  <p>{group.label}</p>
-                  <div>
-                    {group.items.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </div>
-                </div>
+            <div className="impact-grid" aria-label="Quantified impact">
+              {impactMetrics.map((metric) => (
+                <article key={metric.label}>
+                  <p className="metric-value">{metric.value}</p>
+                  <h3>{metric.label}</h3>
+                  <p>{metric.context}</p>
+                </article>
               ))}
             </div>
           </section>
@@ -180,34 +200,18 @@ function App() {
           <section className="console reveal" aria-labelledby="console-title">
             <div className="console-header">
               <div>
-                <p className="section-label section-label-dark">Command center layer</p>
-                <h2 id="console-title">Underwriting analytics, surfaced like a live operating console.</h2>
-              </div>
-              <div className="console-status">
-                <span className="status-dot" aria-hidden="true" />
-                <span>Production scale / monitored / lender-facing</span>
+                <h2 id="console-title">Capabilities mapped to product outcomes.</h2>
+                <p>
+                  The work connects financial intelligence, lifecycle ownership, model-adjacent
+                  delivery, and persona-led product curation.
+                </p>
               </div>
             </div>
 
             <div className="console-grid">
               <article className="console-primary">
-                <div className="console-terminal">
-                  <div className="console-terminal-bar">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="console-lines" aria-label="Workflow narrative">
-                    {primaryCaseStudy.metrics.map((metric, index) => (
-                      <p key={metric}>
-                        <span>0{index + 1}</span>
-                        <strong>{metric}</strong>
-                      </p>
-                    ))}
-                  </div>
-                </div>
                 <div className="console-detail">
-                  <p className="console-tag">{primaryCaseStudy.format}</p>
+                  <p className="console-tag">{primaryCaseStudy.title}</p>
                   <p>{primaryCaseStudy.summary}</p>
                   <ul>
                     {primaryCaseStudy.outcomes.map((outcome) => (
@@ -238,18 +242,17 @@ function App() {
               </aside>
             </div>
 
-            <div className="workflow-strip" aria-label="Data engineering workflow">
+            <div className="workflow-strip" aria-label="Data product lifecycle workflow">
               <div className="workflow-heading">
-                <p className="section-label section-label-dark">Data engineering workflow</p>
                 <p>
-                  A delivery spine informed by the local B2B marketplace crawler project: source
-                  acquisition, cleaning, partitioned output, and analysis-ready handoff.
+                  A delivery spine informed by MobileForge and the B2B marketplace crawler: source
+                  acquisition, schema discipline, service reliability, feature readiness, and
+                  analytics handoff.
                 </p>
               </div>
               <div className="workflow-grid">
-                {workflowStages.map((stage, index) => (
+                {workflowStages.map((stage) => (
                   <article key={stage.step} className="workflow-step">
-                    <p className="workflow-index">0{index + 1}</p>
                     <h3>{stage.step}</h3>
                     <p>{stage.detail}</p>
                   </article>
@@ -260,7 +263,6 @@ function App() {
 
           <section className="case-section reveal" aria-labelledby="case-studies-title">
             <div className="section-heading">
-              <p className="section-label">Selected case studies</p>
               <h2 id="case-studies-title">Data Product Experiences</h2>
             </div>
 
@@ -277,7 +279,7 @@ function App() {
                 </ul>
                 <a
                   className="text-link"
-                  href={primaryCaseStudy.links[0]?.href}
+                  href={linkHref(primaryCaseStudy.links[0]?.href)}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -300,18 +302,16 @@ function App() {
                   {study.image ? (
                     <div className="reference-image-wrap">
                       <img
-                        src={`/portfolio-web-app${study.image}`}
+                        src={assetHref(study.image)}
                         alt={study.title}
                         className="reference-image"
+                        loading="lazy"
                       />
                     </div>
                   ) : (
                     <div className="reference-evidence-panel" aria-label={`${study.title} evidence`}>
-                      {study.metrics.map((metric, index) => (
-                        <p key={metric}>
-                          <span>0{index + 1}</span>
-                          {metric}
-                        </p>
+                      {study.metrics.map((metric) => (
+                        <p key={metric}>{metric}</p>
                       ))}
                     </div>
                   )}
@@ -327,9 +327,9 @@ function App() {
                     </div>
                     <a
                       className="text-link"
-                      href={study.links[0]?.href}
-                      target="_blank"
-                      rel="noreferrer"
+                      href={linkHref(study.links[0]?.href)}
+                      target={isExternalHref(study.links[0]?.href) ? "_blank" : undefined}
+                      rel={isExternalHref(study.links[0]?.href) ? "noreferrer" : undefined}
                     >
                       <span>{study.links[0]?.label}</span>
                       <MoveRight aria-hidden="true" size={16} />
@@ -337,30 +337,12 @@ function App() {
                   </div>
                 </article>
               ))}
-              {showWorkflowSlot ? (
-                <article
-                  className="reference-item reference-item-placeholder"
-                  aria-label="Future workflow project slot"
-                >
-                  <div className="reference-copy">
-                    <p className="case-format">Content-driven slot</p>
-                    <h3>Data Engineering Workflow</h3>
-                    <p className="case-theme">Reserved layout for future source-backed project content.</p>
-                    <p>
-                      The app already supports another portfolio entry in this rail. When shared
-                      content adds a workflow or engineering case study, this section can absorb it
-                      without a layout change.
-                    </p>
-                  </div>
-                </article>
-              ) : null}
             </div>
           </section>
 
           <section className="experience-section reveal" aria-labelledby="experience-title">
             <div className="section-heading section-heading-tight">
-              <p className="section-label">Recent experience</p>
-              <h2 id="experience-title">Roles that connect data delivery, product clarity, and measurable lift.</h2>
+              <h2 id="experience-title">Recent roles across data delivery and product clarity.</h2>
             </div>
 
             <div className="experience-list">
@@ -389,9 +371,9 @@ function App() {
 
           <footer className="portfolio-footer reveal">
             <div>
-              <p className="section-label">Open to conversation</p>
               <p className="footer-note">
-                Analytics engineering and data engineering roles with product accountability.
+                Open to product-minded data roles that need lifecycle ownership, financial
+                intelligence, and measurable delivery.
               </p>
             </div>
             <a className="footer-email" href={`mailto:${profile.email}`}>

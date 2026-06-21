@@ -57,7 +57,7 @@ export type CaseStudy = {
 };
 
 export type ResumeVariant = {
-  id: "data-analytics" | "data-engineering";
+  id: "data-full-stack" | "product-data-systems";
   fileName: string;
   headline: string;
   summary: string;
@@ -69,15 +69,15 @@ export type ResumeVariant = {
 
 export const profile: Profile = {
   name: "Ashutosh Patel",
-  title: "Data Analytics + Data Engineering / Analytics Engineering",
+  title: "Data Full Stack Ownership for Data Products",
   location: "Gurugram, India",
   email: "ashutosh.pateljiit@gmail.com",
   phone: "+91 98975 18909",
   linkedin: "linkedin.com/in/ashutosh-patel124579",
   github: "github.com/ashu1717",
-  availability: "Data full-stack, analytics engineering, and product analytics roles",
+  availability: "Data products, analytics engineering, and AI/ML/DS-enabled decision systems",
   summary:
-    "Data full-stack professional building credit risk pipelines, marketplace data workflows, lending intelligence, and data product experiences that turn high-volume behavioral, transaction, and product signals into governed features, decision metrics, and client-ready insight."
+    "Data full-stack professional owning the lifecycle from schema design and service workflows to feature systems, analytics, and deterministic AI/ML/DS enablement across credit risk, marketplace intelligence, wealth workflows, and product-led decision support."
 };
 
 export const contactLinks: ContactLink[] = [
@@ -102,62 +102,68 @@ export const impactMetrics: ImpactMetric[] = [
   {
     label: "Bank & NBFC clients enabled",
     value: "6",
-    context: "Supported lender-facing analytics, feature selection, and performance review workflows."
+    context: "Supported lender-facing features, analytics reviews, and production decision workflows."
   },
   {
     label: "Approval lift at flat default rate",
     value: "+15%",
-    context: "Improved approval outcomes through risk feature evaluation and stable decision metrics."
+    context: "Improved outcomes through governed features, risk evaluation, and stable metrics."
   },
   {
     label: "Signals evaluated into stable features",
     value: "5K -> 800",
-    context: "Reduced noisy candidate signals into governed underwriting and monitoring indicators."
+    context: "Reduced noisy candidate signals into usable underwriting and monitoring indicators."
   },
   {
     label: "SMS processed daily",
     value: "10M+",
-    context: "Supported production-scale device intelligence and real-time scoring workloads."
+    context: "Supported device intelligence, service reliability, and real-time scoring workloads."
   }
 ];
 
 export const capabilityGroups: CapabilityGroup[] = [
   {
-    title: "Analytics Engineering",
+    title: "Data Lifecycle Ownership",
     summary:
-      "Transforms raw event, transaction, and API data into reliable metrics, feature tables, and decision-ready reporting.",
-    items: ["SQL/Python transformations", "ETL workflows", "metric definitions", "validation checks"]
+      "Connects schemas, transformations, services, feature tables, validation, and analytics into one accountable delivery path.",
+    items: ["schema design", "service workflows", "feature stores", "analytics handoff"]
   },
   {
-    title: "Credit Risk Intelligence",
+    title: "Financial Intelligence",
     summary:
-      "Evaluates lending signals across approval/default outcomes with explainable metrics and portfolio monitoring.",
+      "Maps risk, lending, wealth, and marketplace signals into explainable metrics for portfolio and product decisions.",
     items: ["30/60/90-DPD", "IV/WoE", "deciles", "FOIR", "PSI", "SHAP reason codes"]
   },
   {
-    title: "Data Product Experiences",
+    title: "AI/ML/DS Enablement",
     summary:
-      "Frames analytics work as persona-led products with clear workflows, business context, and product-ready outputs.",
-    items: ["B2B API analytics", "marketplace crawlers", "dashboard systems", "client reviews"]
+      "Builds deterministic model-adjacent workflows where features, reason codes, monitoring, and dashboards stay production-readable.",
+    items: ["feature selection", "model monitoring", "reason codes", "drift review"]
+  },
+  {
+    title: "Product Experience Curation",
+    summary:
+      "Frames data work as persona-led experiences across advisor, operator, and lender workflows.",
+    items: ["B2B APIs", "marketplace crawlers", "Figma references", "client reviews"]
   }
 ];
 
 export const technologyGroups: TechnologyGroup[] = [
   {
-    label: "Analytics",
-    items: ["SQL", "Python", "Pandas", "NumPy", "Power BI", "Grafana"]
+    label: "Schema & Services",
+    items: ["PostgreSQL", "MySQL", "MongoDB interactions", "FastAPI", "ONNX"]
   },
   {
-    label: "Risk & Modeling",
-    items: ["IV/WoE", "XGBoost", "scikit-learn", "SHAP", "decile analysis", "PSI"]
+    label: "Features & ML",
+    items: ["Python", "Pandas", "NumPy", "scikit-learn", "XGBoost", "SHAP"]
   },
   {
-    label: "Data Engineering",
-    items: ["ETL workflows", "feature pipelines", "Scrapy", "FastAPI", "ONNX", "Docker", "MLflow"]
+    label: "Analytics & BI",
+    items: ["SQL", "Power BI", "Grafana", "IV/WoE", "decile analysis", "PSI"]
   },
   {
-    label: "Datastores",
-    items: ["PostgreSQL", "MySQL", "MongoDB interactions"]
+    label: "Product Systems",
+    items: ["ETL workflows", "Scrapy", "Docker", "MLflow", "validation checks"]
   }
 ];
 
@@ -169,7 +175,7 @@ export const experience: ExperienceItem[] = [
     dates: "Apr 2025 - Present",
     location: "Noida, India",
     bullets: [
-      "Own analytics and feature engineering for a B2B device-intelligence platform used by 6 banks and NBFCs; combine SQL, Python, and MongoDB interactions to turn behavioral, transaction, and device data into underwriting and portfolio signals.",
+      "Own data product workflows for a B2B device-intelligence platform used by 6 banks and NBFCs; combine SQL, Python, and MongoDB interactions to move behavioral, transaction, and device data into underwriting features and portfolio signals.",
       "Evaluated 5,000+ candidate signals against 30/60/90-DPD outcomes and distilled about 800 stable indicators using IV/WoE, VIF, and decile analysis; contributed to a +15% approval-rate lift at a flat default rate.",
       "Built a 3-level transaction taxonomy spanning 12 categories, 48 subcategories, and 200+ labels at 94% accuracy, enabling income, EMI/FOIR, expense-to-income, and discretionary-spend analytics.",
       "Designed 5 Grafana dashboards and automated metric packs for decision throughput, approve/decline mix, API usage, extraction quality, model performance, and drift.",
@@ -201,28 +207,28 @@ export const experience: ExperienceItem[] = [
 export const caseStudies: CaseStudy[] = [
   {
     title: "MobileForge Lending Intelligence",
-    format: "Built experience",
-    theme: "Credit risk pipelines, analytics engineering, and lender-facing metrics",
+    format: "Built data product",
+    theme: "Credit risk, governed features, scoring services, and lender-facing decision metrics",
     summary:
-      "A B2B lending intelligence workflow that connects raw device, transaction, and behavioral signals to governed features, lender reviews, and monitored decision metrics.",
+      "A B2B lending intelligence workflow that connects raw device, transaction, and behavioral signals to schema-backed features, real-time services, lender reviews, and monitored decision metrics.",
     metrics: ["6 lender clients", "5K -> 800 stable indicators", "+15% approval lift", "10M+ SMS/day"],
     outcomes: [
       "Converted noisy alternative-data signals into explainable underwriting and portfolio-monitoring views.",
-      "Connected engineering reliability, risk analytics, and stakeholder reporting into one product narrative."
+      "Connected service reliability, risk analytics, deterministic model outputs, and stakeholder reporting into one product narrative."
     ],
     links: [
       {
         label: "Open evidence artifact",
-        href: "/portfolio-web-app/case-studies/b2b-marketplace-crawler-evidence.json"
+        href: "/case-studies/b2b-marketplace-crawler-evidence.json"
       }
     ]
   },
   {
     title: "B2B Marketplace Crawler",
-    format: "Data engineering workflow",
-    theme: "Scrapy pipelines, product data extraction, cleaning, and EDA",
+    format: "Data product workflow",
+    theme: "Crawler design, product extraction, supplier intelligence, and EDA-ready datasets",
     summary:
-      "A production-minded IndiaMART data collection workflow that crawls B2B product listings, normalizes supplier and pricing fields, exports category-level datasets, and turns raw marketplace pages into EDA-ready product intelligence.",
+      "A production-minded IndiaMART collection workflow that starts with source discovery, normalizes supplier and pricing fields, exports category-level datasets, and turns raw marketplace pages into product intelligence.",
     metrics: ["1,329 IndiaMART products", "821 suppliers", "120 cities", "4 marketplace categories"],
     outcomes: [
       "Established a category-driven spider with sub-category discovery, pagination, throttling, retries, and cached responses for controlled crawling.",
@@ -245,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
     image: "/case-studies/wealth-management-experience.png",
     metrics: ["Advisor dashboard", "Portfolio drift", "Client-ready proposals", "Trust-first AI"],
     outcomes: [
-      "Informs the portfolio's warm editorial layer, restrained financial palette, and human-readable analytics copy.",
+      "Informs the portfolio's restrained financial palette, product hierarchy, and human-readable analytics copy.",
       "Curated as a design reference for persona-driven financial data products."
     ],
     links: [
@@ -264,7 +270,7 @@ export const caseStudies: CaseStudy[] = [
     image: "/case-studies/infrastructure-self-serve-experience.png",
     metrics: ["Command center", "Execution plans", "Approvals", "Auditability"],
     outcomes: [
-      "Informs the portfolio's dark console layer, pipeline language, metric density, and operational interaction model.",
+      "Informs the portfolio's lifecycle language, metric density, and operational interaction model.",
       "Curated as a design reference for domain-agnostic product development."
     ],
     links: [
@@ -278,17 +284,17 @@ export const caseStudies: CaseStudy[] = [
 
 export const resumeVariants: ResumeVariant[] = [
   {
-    id: "data-analytics",
-    fileName: "ashutosh-patel-data-analytics.pdf",
-    headline: "Data Analytics | Analytics Engineering | Business-Enabled Data Products",
+    id: "data-full-stack",
+    fileName: "ashutosh-patel-data-full-stack.pdf",
+    headline: "Data Full Stack Ownership | Data Products | Analytics Engineering",
     summary:
-      "Analytics professional building lending and marketplace data products that convert behavioral, transaction, product, and device signals into governed metrics, portfolio insights, and client-ready decision support. Supports 6 bank and NBFC clients, evaluates 5,000+ candidate signals, and operationalizes about 800 stable indicators across underwriting, monitoring, and product analytics.",
+      "Data full-stack professional building lending and marketplace data products that convert behavioral, transaction, product, and device signals into schemas, services, features, governed metrics, portfolio insights, and client-ready decision support. Supports 6 bank and NBFC clients, evaluates 5,000+ candidate signals, and operationalizes about 800 stable indicators across underwriting, monitoring, and product analytics.",
     focusAreas: [
-      "KPI systems, dashboarding, and stakeholder reporting",
+      "Schema design, service workflows, feature systems, and analytics handoff",
       "Credit risk analytics across approval/default, 30/60/90-DPD, FOIR, IV/WoE, deciles, and PSI",
-      "Business-enabled analytics flows for lender reviews, anomaly diagnosis, and product adoption"
+      "Business-enabled flows for lender reviews, anomaly diagnosis, and product adoption"
     ],
-    capabilityTitles: ["Analytics Engineering", "Credit Risk Intelligence", "Data Product Experiences"],
+    capabilityTitles: ["Data Lifecycle Ownership", "Financial Intelligence", "AI/ML/DS Enablement", "Product Experience Curation"],
     experienceHighlights: [
       "Designed Grafana dashboards and metric packs for decision throughput, approve/decline mix, API usage, extraction quality, model performance, and drift.",
       "Ran feature evaluation across 5,000+ candidate signals and distilled about 800 stable indicators, contributing to a +15% approval-rate lift at a flat default rate.",
@@ -300,18 +306,18 @@ export const resumeVariants: ResumeVariant[] = [
       "Python, SQL, Pandas, NumPy, Power BI, Grafana, PostgreSQL, MySQL, MongoDB interactions, FastAPI, Git"
   },
   {
-    id: "data-engineering",
-    fileName: "ashutosh-patel-data-engineering.pdf",
-    headline: "Data Engineering | Analytics Engineering | Credit Risk Pipelines",
+    id: "product-data-systems",
+    fileName: "ashutosh-patel-product-data-systems.pdf",
+    headline: "Product Data Systems | Credit Risk Pipelines | AI/ML/DS Enablement",
     summary:
-      "Data engineering and analytics engineering professional building end-to-end credit risk pipelines, B2B marketplace crawler workflows, validation layers, feature workflows, and real-time scoring support for data products. Combines Python, SQL, Scrapy, MongoDB interactions, FastAPI, ONNX, dashboards, and monitoring to move raw streams into production-grade business outcomes.",
+      "Product data systems professional building end-to-end credit risk pipelines, B2B marketplace crawler workflows, validation layers, feature workflows, and real-time scoring support for data products. Combines Python, SQL, Scrapy, MongoDB interactions, FastAPI, ONNX, dashboards, and monitoring to move raw streams into production-grade business outcomes.",
     focusAreas: [
-      "ETL workflows, feature pipelines, and validation checks",
+      "Schema-backed ETL workflows, feature pipelines, and validation checks",
       "B2B marketplace crawler design across extraction, cleaning, CSV exports, and EDA readiness",
       "Production data services for underwriting, monitoring, and analytics consumers",
       "Model-adjacent data delivery across feature selection, reason codes, drift, and API reliability"
     ],
-    capabilityTitles: ["Analytics Engineering", "Credit Risk Intelligence", "Data Product Experiences"],
+    capabilityTitles: ["Data Lifecycle Ownership", "Financial Intelligence", "AI/ML/DS Enablement", "Product Experience Curation"],
     experienceHighlights: [
       "Built and maintained transformation workflows for behavioral, transaction, and device data used in underwriting and portfolio monitoring.",
       "Built a B2B marketplace crawler workflow over 1,329 product records across Industrial Machinery, Raw Materials, Packaging, and Electrical Components.",
