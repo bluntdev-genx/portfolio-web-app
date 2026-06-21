@@ -1,0 +1,52 @@
+{
+  "project": "B2B Marketplace Crawler & EDA",
+  "marketplace": "IndiaMART",
+  "purpose": "Source-backed data engineering workflow for collecting, cleaning, exporting, and analyzing B2B product listings.",
+  "dataset": {
+    "total_products_scraped": 1329,
+    "unique_suppliers": 821,
+    "unique_locations": 120,
+    "categories": [
+      {
+        "name": "Industrial Machinery",
+        "records": 469
+      },
+      {
+        "name": "Raw Materials",
+        "records": 450
+      },
+      {
+        "name": "Packaging",
+        "records": 256
+      },
+      {
+        "name": "Electrical Components",
+        "records": 154
+      }
+    ]
+  },
+  "workflow": [
+    "Scrapy spider with category and sub-category discovery",
+    "URL-based pagination and product-detail extraction",
+    "Controlled concurrency, retry handling, request caching, and download throttling",
+    "Data cleaning for text fields, price defaults, and absolute product URLs",
+    "Category-partitioned CSV outputs plus combined EDA-ready dataset"
+  ],
+  "schema": [
+    "marketplace",
+    "category",
+    "product_name",
+    "price",
+    "currency",
+    "supplier_name",
+    "supplier_location",
+    "min_order_quantity",
+    "product_url",
+    "scraped_at"
+  ],
+  "eda_findings": [
+    "Only 7.8% of products had listed prices, matching the B2B pattern of price-on-request discovery.",
+    "Mumbai led supplier coverage with 274 products, followed by New Delhi with 161.",
+    "Supplier information was present for 77% of records, while MOQ completeness was low."
+  ]
+}
